@@ -2051,7 +2051,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=3;
+		items=4;
 		class Item0
 		{
 			position[]={5000.0063,0.021278715,5119.9839};
@@ -2068,6 +2068,12 @@ class Mission
 		{
 			position[]={2519.5828,4.5648108,6458.9595};
 			name="respawn_west";
+			type="Empty";
+		};
+		class Item3
+		{
+			position[]={7856.2002,4.5648108,2405.8};
+			name="trader_city";
 			type="Empty";
 		};
 	};

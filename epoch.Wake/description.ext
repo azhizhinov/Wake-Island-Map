@@ -3,7 +3,7 @@ class Header
 {
  gameType = Sandbox;
  minPlayers = 1;
- maxPlayers = 100;
+ maxPlayers = 25;
 };
 respawn = "BASE";
 respawnDelay = 600;
@@ -56,18 +56,18 @@ class CfgEpochClient
 	
 	class Wake {
 		blockedArea[] = {
-			{{6306.8755,6304.0278,0},300}, //MilitaryOffices
-			{{6719.5732,6541.5425,0},100}, //OfficerHousing
-			{{7277.0195,6547.0352,0},50}, //MilitaryObject
-			{{7518.0439,4528.855,0},500}, //MainParkingArea
-			{{7829.8989,4016.853,0},100}, //MilitaryObject
-			{{7466.8438,3528.1255,0},500}, //OldTerminal
-			{{7790.2573,2758.8667,0},50}, //MilitaryObject
-			{{6799.1938,3105.481,0},80}, //Junkyard
-			{{6328.4888,3333.0459,0},110}, //Junkyard
-			{{5378.7056,3792.8333,0},50}, //MilitaryObject
-			{{4090.0239,4790.7437,0},300}, //Pier
-			{{3688.2786,5007.6582,0},50} //FuelDepot
+			{ { 6306.8755,6304.0278, 0 }, 300 }, //Military Offices
+			{ { 6719.5732,6541.5425, 0 }, 100 }, //Officer Housing
+			{ { 7277.0195,6547.0352, 0 }, 50 }, //Military Object
+			{ { 7518.0439,4528.855, 0 }, 500 }, //Main Parking Area
+			{ { 7829.8989,4016.853, 0 }, 100 }, //Military Object
+			{ { 7466.8438,3528.1255, 0 }, 500 }, //Old Terminal
+			{ { 7790.2573,2758.8667, 0 }, 50 }, //Military Object
+			{ { 6799.1938,3105.481, 0 }, 80 }, //Junkyard
+			{ { 6328.4888,3333.0459, 0 }, 110 }, //Junkyard
+			{ { 5378.7056,3792.8333, 0 }, 50 }, //Military Object
+			{ { 4090.0239,4790.7437, 0 }, 300 }, //Pier
+			{ { 3688.2786,5007.6582, 0 }, 50 } //Fuel Depot
 		};
 		Rocks[] = {
 			"sharpstone_03_lc.p3d",

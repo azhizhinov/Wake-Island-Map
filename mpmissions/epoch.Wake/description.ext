@@ -1,9 +1,9 @@
 author = "Epoch Mod Team";
 class Header
 {
- gameType = Sandbox;
- minPlayers = 1;
- maxPlayers = 25;
+	gameType = Sandbox;
+	minPlayers = 1;
+	maxPlayers = 25;
 };
 respawn = "BASE";
 respawnDelay = 600;
@@ -11,7 +11,7 @@ respawnDialog = 0;
 
 onLoadMission= "Epoch";
 OnLoadIntro = "Welcome to Epoch Mod";
-loadScreen = "\x\addons\a3_epoch_assets\pictures\loadScreen_ca.paa"; 
+loadScreen = "\x\addons\a3_epoch_assets\pictures\loadScreen_ca.paa";
 OnLoadIntroTime = False;
 OnLoadMissionTime = False;
 onLoadName = "Epoch Mod";
@@ -36,35 +36,105 @@ wreckLimit = 2;
 wreckRemovalMinTime = 60;
 wreckRemovalMaxTime = 360;
 
+class cfgFunctions
+{
+	class A3E
+	{
+		tag = "EPOCH";
+		class Client
+		{
+			file = "\x\addons\a3_epoch_code\init";
+			class init
+			{
+				preInit = 1;
+			};
+			class postinit
+			{
+				postInit = 1;
+			};
+		};
+	};
+};
+
 class CfgRemoteExec
 {
-		class Functions
-		{
-				mode = 0;
-				jip = 0;
+	class Functions
+	{
+		mode = 1;
+		jip = 0;
+		class EPOCH_server_save_vehicles {
+			allowedTargets=2;
+			jip = 0;
 		};
-		class Commands
-		{
-				mode=0;
-		};
+	};
+	class Commands {mode=0;};
 };
 
 class CfgEpochClient
 {
-	epochVersion = "0.3.2.0";
-	
+	epochVersion = "0.3.3.1";
+
 	sapperRngChance = 100; // increase number to reduce chances and reduce to increase. Default 100 = 1% - 55% if soiled (+ 2% if in city) chance to spawn sapper
 	droneRngChance = 100; // increase number to reduce chances and reduce to increase. Default 100 = // 2% chance (+ 4% chance if in city) (1% - 2% Half if using silencer) to spawn drone if shot fired
-	
+
 	buildingNearbyMilitary = 0; //1 to allow building nearby
 	buildingNearbyMilitaryRange = 300; //Define radius of blocked area
 
-	buildingRequireJammer = 0; // 1 = to allow building without a jammer 
-	buildingCountLimit = 200; // how many objects can be built within range of a jammer 
-	buildingJammerRange = 75; // jammer range in meters 
-	
+	buildingRequireJammer = 0; // 1 = to allow building without a jammer
+	buildingCountLimit = 200; // how many objects can be built within range of a jammer
+	buildingJammerRange = 75; // jammer range in meters
+
 	EPOCH_news[] = {"Word is that Sappers have a new boss.","Dogs will often lure them monsters away.","My dog was blown up. I miss him.."};
-	
+
+	antagonistSpawnIndex[] = {
+		{"Epoch_Cloak_F", 1}, // {"type", limit}
+		{"GreatWhite_F", 2},
+		{"Epoch_Sapper_F",2},
+		{"Epoch_SapperB_F",1},
+		{"I_UAV_01_F",2},
+		{"PHANTOM",1},
+		{"B_Heli_Transport_01_F",1}
+	};
+
+	customVarsDefaults[] = {
+		{"Temp",98.6}, // EPOCH_player + varName, default value
+		{"Hunger",5000},
+		{"Thirst",2500},
+		{"AliveTime",0},
+		{"Energy",0},
+		{"Wet",0},
+		{"Soiled",0},
+		{"Immunity",0},
+		{"Toxicity",0},
+		{"Stamina",100},
+		{"Crypto",0},
+		{"HitPoints",{0,0,0,0}},
+		{"BloodP",100},
+		{"SpawnArray",{}}
+	};
+
+	// controls max group limit and cost
+	group_upgrade_lvl[] = {4,"100",6,"300",8,"500",10,"1000",12,"1500",13,"1750",14,"2000",15,"3000",16,"5000"};
+
+	lootClasses[] = {
+		{ "shelfPos", "Shelf_EPOCH", true },
+		{ "fridgePos", "Fridge_EPOCH", true },
+		{ "bedPos", "Bed_EPOCH", false },
+		{ "couchPos", "Couch_EPOCH", false },
+		{ "wardrobePos", "wardrobe_epoch", false },
+		{ "cookerPos", "cooker_epoch", false },
+		{ "chairPos", { "Chair_EPOCH", "ChairRed_EPOCH" }, true },
+		{ "filingPos", "Filing_epoch", true },
+		{ "pelicanPos", "Pelican_EPOCH", false },
+		{ "tablePos", "Table_EPOCH", false },
+		{ "lockerPos", "Locker_EPOCH", false },
+		{ "toolRackPos", "ToolRack_EPOCH", false },
+		{ "shoeboxPos", "Shoebox_EPOCH", false },
+		{ "palletPos", "Tarp_EPOCH", false },
+		{ "freezerPos", "Freezer_EPOCH", false },
+		{ "cabinetPos", "Cabinet_EPOCH", false }
+	};
+
 	class Wake {
 		blockedArea[] = {
 			{ { 6306.8755,6304.0278, 0 }, 300 }, //Military Offices
@@ -126,6 +196,17 @@ class CfgEpochClient
 			"waterbarrel_f.p3d",
 			"canisterplastic_f.p3d",
 			"watertank_f.p3d"
+		};
+		TrashClasses[] = { "Trash", "TrashSmall", "TrashVehicle", "PumpkinPatch", "TrashFood" };
+		TrashSmall[] = {
+		};
+		TrashVehicle[] = {
+		};
+		PumpkinPatch[] = {
+			"p_pumpkin_summer.p3d",
+			"pumpkin.p3d",
+		};
+		TrashFood[] = {
 		};
 		Trash[] = {
 			"sack_f.p3d",
